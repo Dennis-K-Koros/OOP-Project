@@ -5,8 +5,8 @@ public class Staff  extends Person{
     public int salary;
     public Staff(String staffId,String Id,String name, String phoneNumber,String emailAddress,int salary){
         super(Id, name, phoneNumber, emailAddress);
-        this.staffId=staffId;
-        this.salary=salary;
+        this.staffId = staffId;
+        this.salary = salary;
     }
     @Override
     public float getCashFlow() {
