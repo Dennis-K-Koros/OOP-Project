@@ -63,7 +63,5 @@ public class StartUp {
 
    }
 
-    public static void main(String[] args) {
-        StartUp startUp = new StartUp();
-    }
+
 }
