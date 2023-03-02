@@ -49,7 +49,5 @@ public class SignIn {
 
     }
 
-    public static void main(String[] args) {
-        SignIn signIn = new SignIn();
-    }
+
 }
