@@ -75,9 +75,7 @@ public class Login extends JFrame implements ActionListener {
         frame.add(panel3);
         frame.setVisible(true);
     }
-    public static void main(String []args){
-        Login login1=new Login();
-    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
