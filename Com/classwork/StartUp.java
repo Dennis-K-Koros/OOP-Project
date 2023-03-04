@@ -2,6 +2,8 @@ package Com.classwork;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class StartUp {
 
@@ -29,18 +31,42 @@ public class StartUp {
        btnCtm = new JButton("Customer");
        btnCtm.setFont(myFont3);
        btnCtm.setFocusable(false);
+       btnCtm.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               CtmLogin ctmLogin = new CtmLogin();
+           }
+       });
 
        btnSpp = new JButton("Supplier");
        btnSpp.setFont(myFont3);
        btnSpp.setFocusable(false);
+       btnSpp.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               SppLogin sppLogin = new SppLogin();
+           }
+       });
 
        btnSff = new JButton("Staff");
        btnSff.setFont(myFont3);
        btnSff.setFocusable(false);
+       btnSff.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               SffLogin sffLogin = new SffLogin();
+           }
+       });
 
        btnExit = new JButton("Exit");
        btnExit.setFont(myFont3);
        btnExit.setFocusable(false);
+       btnExit.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               frame.dispose();
+           }
+       });
 
        panel= new JPanel();
        panel.setBounds(60,110,300,100);
