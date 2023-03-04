@@ -34,6 +34,7 @@ public class StartUp {
        btnCtm.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
+               frame.dispose();
                CtmLogin ctmLogin = new CtmLogin();
            }
        });
@@ -44,6 +45,7 @@ public class StartUp {
        btnSpp.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
+               frame.dispose();
                SppLogin sppLogin = new SppLogin();
            }
        });
@@ -54,6 +56,7 @@ public class StartUp {
        btnSff.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
+               frame.dispose();
                SffLogin sffLogin = new SffLogin();
            }
        });

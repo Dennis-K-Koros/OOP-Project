@@ -78,6 +78,7 @@ public class SffLogin extends JFrame  {
         btnSignIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.dispose();
                 SffSignIn sffSignIn = new SffSignIn();
             }
         });

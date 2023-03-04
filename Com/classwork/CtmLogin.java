@@ -78,6 +78,7 @@ public class CtmLogin extends JFrame  {
         btnSignIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.dispose();
                 CtmSignIn ctmSignIn = new CtmSignIn();
             }
         });

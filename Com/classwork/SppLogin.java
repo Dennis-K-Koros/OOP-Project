@@ -84,6 +84,7 @@ public class SppLogin extends JFrame  {
         btnSignIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.dispose();
                 SppSignIn sppSignIn = new SppSignIn();
             }
         });
