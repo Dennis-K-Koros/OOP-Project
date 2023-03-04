@@ -75,9 +75,21 @@ public class CtmLogin extends JFrame  {
         panel3.add(btnSignUp);
 
         btnSignIn=new JButton("SIGN IN");
+        btnSignIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CtmSignIn ctmSignIn = new CtmSignIn();
+            }
+        });
         panel3.add(btnSignIn);
 
         btnCancel=new JButton("CANCEL");
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StartUp startUp = new StartUp();
+            }
+        });
         panel3.add(btnCancel);
 
         frame.add(panel3);

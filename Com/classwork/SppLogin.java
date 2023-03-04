@@ -81,6 +81,12 @@ public class SppLogin extends JFrame  {
         panel3.add(btnSignUp);
 
         btnSignIn=new JButton("SIGN IN");
+        btnSignIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SppSignIn sppSignIn = new SppSignIn();
+            }
+        });
         panel3.add(btnSignIn);
 
         btnCancel=new JButton("CANCEL");
