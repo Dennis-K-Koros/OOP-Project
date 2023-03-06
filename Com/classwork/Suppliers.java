@@ -3,6 +3,7 @@ package Com.classwork;
 public class Suppliers extends Person {
     public String supplierID;
     public String password;
+    public String goodsSupplied;
     public double salary;
 
 
@@ -12,10 +13,11 @@ public class Suppliers extends Person {
         this.salary=salary;
     }
 
-    public Suppliers(String Id, String name, String phoneNumber, String emailAddress, String supplierID, String password) {
+    public Suppliers(String Id, String name, String phoneNumber, String emailAddress, String supplierID, String password,String goodsSupplied) {
         super(Id, name, phoneNumber, emailAddress);
         this.supplierID = supplierID;
         this.password = password;
+        this.goodsSupplied = goodsSupplied;
     }
 
     public float getMoneyDueToPay(){

@@ -5,6 +5,10 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class SffSignIn {
 
@@ -52,6 +56,16 @@ public class SffSignIn {
         btnSignIn = new JButton("SignIn");
         btnSignIn.setFocusable(false);
         btnSignIn.setFont(myFont2);
+        btnSignIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = jtUsername.getText();
+                String password = String.valueOf(jpPassword.getPassword());
+
+                getAuthenticatedStaff(name,password);
+
+            }
+        });
 
         btnClear = new JButton("Clear");
         btnClear.setFocusable(false);
@@ -90,6 +104,34 @@ public class SffSignIn {
         frame.add(panel);
         frame.setVisible(true);
 
+    }
+    public Staff staff;
+    private Staff getAuthenticatedStaff(String name, String password) {
+        try{
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM staff WHERE staffName=? AND emailAddress=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,name);
+            preparedStatement.setString(2,password);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                staff = new Staff( name, password);
+                staff.Id = resultSet.getString("StaffId");
+                staff.name = resultSet.getString("StaffName");
+                staff.phoneNumber = resultSet.getString("PhoneNumber");
+                staff.emailAddress = resultSet.getString("emailAddress");
+            }
+
+            stmt.close();
+            conn.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return staff;
     }
 
 

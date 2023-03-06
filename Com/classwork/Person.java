@@ -14,7 +14,11 @@ public abstract class Person {
       this.emailAddress=emailAddress;
   }
 
-  public abstract float getCashFlow();
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public abstract float getCashFlow();
   public abstract void showDetails();
 
 }

@@ -17,7 +17,10 @@ public class Staff  extends Person{
         this.staffId = staffId;
         this.password = password;
     }
-
+    public Staff(String name,String password){
+        super(name);
+        this.password = password;
+    }
     public String getStaffId() {
         return staffId;
     }
