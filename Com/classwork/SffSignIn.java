@@ -62,7 +62,17 @@ public class SffSignIn {
                 String name = jtUsername.getText();
                 String password = String.valueOf(jpPassword.getPassword());
 
-                getAuthenticatedStaff(name,password);
+                staff=getAuthenticatedStaff(name,password);
+
+                if (staff !=null){
+                    frame.dispose();
+                    WelcomePage welcomePage = new WelcomePage();
+                }else{
+                    JOptionPane.showMessageDialog(null,
+                            "Email Or Password Invalid",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                }
 
             }
         });
