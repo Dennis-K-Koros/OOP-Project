@@ -127,7 +127,7 @@ public class SffLogin extends JFrame  {
 
             Connection conn = DBConnection.createDBConnection();
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO Staff(staffId,natId,name,phone,email,password)"+
+            String sql = "INSERT INTO Staff(staffId,natId,staffName,PhoneNumber,emailAddress,Password)"+
                     "VALUES(?,?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1,staffId);
