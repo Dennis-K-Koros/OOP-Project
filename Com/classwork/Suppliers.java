@@ -19,6 +19,10 @@ public class Suppliers extends Person {
         this.password = password;
         this.goodsSupplied = goodsSupplied;
     }
+    public Suppliers(String name,String password){
+        super(name);
+        this.password=password;
+    }
 
     public float getMoneyDueToPay(){
         return 0;
