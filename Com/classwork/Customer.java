@@ -6,6 +6,10 @@ public class Customer extends Person {
     public double moneyReceipt;
     public String password;
 
+    public Customer(String name,String password){
+        super(name);
+        this.password=password;
+    }
     public Customer(String Id, String name, String phoneNumber, String emailAddress, String customerID, String password) {
         super(Id, name, phoneNumber, emailAddress);
         this.customerID = customerID;

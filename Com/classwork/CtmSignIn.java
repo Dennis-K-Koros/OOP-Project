@@ -5,6 +5,10 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class CtmSignIn {
 
@@ -52,6 +56,26 @@ public class CtmSignIn {
         btnSignIn = new JButton("SignIn");
         btnSignIn.setFocusable(false);
         btnSignIn.setFont(myFont2);
+        btnSignIn.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String name = jtUsername.getText();
+            String password = String.valueOf(jpPassword.getPassword());
+
+            customer = customerAuthentication(name, password);
+
+            if (customer != null) {
+                frame.dispose();
+                WelcomePage welcomePage = new WelcomePage();
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Email Or Password Invalid",
+                        "Try Again",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+    });
 
         btnClear = new JButton("Clear");
         btnClear.setFocusable(false);
@@ -91,6 +115,38 @@ public class CtmSignIn {
         frame.setVisible(true);
 
     }
+            public Customer customer;
+            private Customer customerAuthentication(String name, String password) {
+                try{
+                    Connection conn = DBConnection.createDBConnection();
+                    Statement stmt = conn.createStatement();
+                    String sql = "SELECT * FROM staff WHERE customerName=? AND emailAddress=?";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    preparedStatement.setString(1,name);
+                    preparedStatement.setString(2,password);
+
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    if (resultSet.next()){
+                        customer = new Customer(name,password);
+                        customer.Id = resultSet.getString("StaffId");
+                        customer.name = resultSet.getString("StaffName");
+                        customer.phoneNumber = resultSet.getString("PhoneNumber");
+                        customer.emailAddress = resultSet.getString("emailAddress");
+                    }
+
+                    stmt.close();
+                    conn.close();
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                return customer;
+            }
 
 
-}
+    }
+
+
+
+
