@@ -4,11 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class Login extends JFrame implements ActionListener {
      JFrame frame;
      JLabel Id,name,phoneNumber,emailAddress,password;
-     JTextField txtId,txtName,txtPhoneNumber,txtEmailAddress,txtPassword;
+     JTextField txtId,txtName,txtPhoneNumber,txtEmailAddress;
+     JPasswordField txtPassword;
      JButton btnSignUp,btnSignIn,btnCancel;
      JPanel panel1,panel2,panel3;
 
@@ -64,7 +68,7 @@ public class Login extends JFrame implements ActionListener {
         txtEmailAddress.setSize(150,30);
         panel2.add(txtEmailAddress);
 
-        txtPassword = new JTextField();
+        txtPassword = new JPasswordField();
         txtPassword.setSize(150,30);
         panel2.add(txtPassword);
 
@@ -89,7 +93,6 @@ public class Login extends JFrame implements ActionListener {
         frame.add(panel3);
         frame.setVisible(true);
     }
-
 
 
     @Override

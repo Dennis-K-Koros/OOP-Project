@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 public class SffLogin extends JFrame  {
     JFrame frame;
@@ -72,9 +75,17 @@ public class SffLogin extends JFrame  {
         panel3.setBounds(50,300,300,40);
 
         btnSignUp=new JButton("SIGN UP");
+        btnSignUp.setFocusable(false);
+        btnSignUp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registerStaff();
+            }
+        });
         panel3.add(btnSignUp);
 
         btnSignIn=new JButton("SIGN IN");
+        btnSignIn.setFocusable(false);
         btnSignIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,10 +96,66 @@ public class SffLogin extends JFrame  {
         panel3.add(btnSignIn);
 
         btnCancel=new JButton("CANCEL");
+        btnCancel.setFocusable(false);
         panel3.add(btnCancel);
 
         frame.add(panel3);
         frame.setVisible(true);
     }
+
+    private void registerStaff() {
+        String staffId = jtCtm.getText();
+        String natId = txtId.getText();
+        String name = txtName.getText();
+        String phone = txtPhoneNumber.getText();
+        String email = txtEmailAddress.getText();
+        String password = String.valueOf(pfPassword.getPassword());
+
+        if (name.isEmpty() || email.isEmpty() || natId.isEmpty() || phone.isEmpty() || password.isEmpty() || staffId.isEmpty() ){
+            JOptionPane.showMessageDialog(this,
+                    "Please Enter All Fields",
+                    "Try Again",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+        staff=addStaffToDatabase(staffId,natId,name,phone,email,password);
+    }
+    public Staff staff;
+    private Staff addStaffToDatabase(String staffId, String natId, String name, String phone, String email, String password) {
+
+        try{
+
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO Staff(staffId,natId,name,phone,email,password)"+
+                    "VALUES(?,?,?,?,?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,staffId);
+            preparedStatement.setString(2,natId);
+            preparedStatement.setString(3,name);
+            preparedStatement.setString(4,phone);
+            preparedStatement.setString(5,email);
+            preparedStatement.setString(6,password);
+
+
+            int addedRows = preparedStatement.executeUpdate();
+            if (addedRows>0){
+                staff = new Staff( staffId, natId,name, phone, email,password);
+                staff.Id=natId;
+                staff.name=name;
+                staff.phoneNumber=phone;
+                staff.emailAddress=email;
+                staff.password = password;
+            }
+
+            stmt.close();
+            conn.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return staff;
+    }
+
 
 }
