@@ -4,8 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
-public class CtmLogin extends JFrame  {
+public class
+CtmLogin extends JFrame  {
     JFrame frame;
     JLabel ctmId, id,name,phoneNumber,emailAddress,password;
     JTextField jtCtm,txtId,txtName,txtPhoneNumber,txtEmailAddress;
@@ -96,5 +100,63 @@ public class CtmLogin extends JFrame  {
         frame.add(panel3);
         frame.setVisible(true);
     }
+    private void customerRegistration() {
+        String ctmId= jtCtm.getText();
+        String natId = txtId.getText();
+        String name = txtName.getText();
+        String phone = txtPhoneNumber.getText();
+        String email = txtEmailAddress.getText();
+        String password = String.valueOf(pfPassword.getPassword());
 
-}
+        if (name.isEmpty() || email.isEmpty() || natId.isEmpty() || phone.isEmpty() || password.isEmpty() || ctmId.isEmpty() ){
+            JOptionPane.showMessageDialog(this,
+                    "Please Enter All Fields",
+                    "Try Again",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+        customer=addCustomerToDatabase(ctmId,natId,name,phone,email,password);
+    }
+    public Customer customer;
+    private Customer addCustomerToDatabase(String ctmId, String natId, String name, String phone, String email, String password) {
+
+        try{
+
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO Customer(ctmId,natId,customerName,PhoneNumber,emailAddress,Password)"+
+                    "VALUES(?,?,?,?,?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,ctmId);
+            preparedStatement.setString(2,natId);
+            preparedStatement.setString(3,name);
+            preparedStatement.setString(4,phone);
+            preparedStatement.setString(5,email);
+            preparedStatement.setString(6,password);
+
+
+            int addedRows = preparedStatement.executeUpdate();
+            if (addedRows>0){
+                customer = new Customer( ctmId, natId,name, phone, email,password);
+                customer.Id=natId;
+                customer.name=name;
+                customer.phoneNumber=phone;
+                customer.emailAddress=email;
+                customer.password = password;
+            }
+
+            stmt.close();
+            conn.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
+
+    }
+
+
+
+
