@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 
 public class Deliveries {
     JFrame frame;
-    JLabel ctmId, id,name,phoneNumber;
+    JLabel deliveryId, supplierId,goodId,phoneNumber;
     JTextField jtCtm,txtId,txtName,txtPhoneNumber;
-    JButton btnSignUp,btnSignIn,btnCancel;
+    JButton btnOk,btnClear,btnCancel;
     JPanel panel1,panel2,panel3;
 
     Deliveries(){
@@ -22,14 +22,14 @@ public class Deliveries {
         panel1.setLayout(new GridLayout(4,1,5,5));
         panel1.setBounds(50,50,150,160);
 
-        ctmId = new JLabel("DELIVERY ID");
-        panel1.add(ctmId);
+        deliveryId = new JLabel("DELIVERY ID");
+        panel1.add(deliveryId);
 
-        id=new JLabel("SUPPLIER ID");
-        panel1.add(id);
+        supplierId=new JLabel("SUPPLIER ID");
+        panel1.add(supplierId);
 
-        name=new JLabel("GOOD ID");
-        panel1.add(name);
+        goodId=new JLabel("GOOD ID");
+        panel1.add(goodId);
 
         phoneNumber=new JLabel("AMOUNT SUPPLIED");
         panel1.add(phoneNumber);
@@ -58,11 +58,11 @@ public class Deliveries {
         panel3.setLayout(new GridLayout(1,3,5,5));
         panel3.setBounds(50,300,300,40);
 
-        btnSignUp=new JButton("OK");
-        panel3.add(btnSignUp);
+        btnOk=new JButton("OK");
+        panel3.add(btnOk);
 
-        btnSignIn=new JButton("CLEAR");
-        panel3.add(btnSignIn);
+        btnClear=new JButton("CLEAR");
+        panel3.add(btnClear);
 
         btnCancel=new JButton("CANCEL");
         panel3.add(btnCancel);

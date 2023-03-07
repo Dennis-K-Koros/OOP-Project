@@ -12,7 +12,7 @@ public class CtmWelcomePage {
 
     CtmWelcomePage(){
 
-        frame = new JFrame("Welcome Staff");
+        frame = new JFrame("Welcome Customer");
         frame.setSize(420,420);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);

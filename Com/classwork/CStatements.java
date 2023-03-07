@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class CStatements {
     JFrame frame;
     JPanel panel;
-    JButton btnCtm,btnExit;
+    JButton btnStatements,btnExit;
     JTable table;
     JScrollPane scroll;
 
@@ -22,8 +22,8 @@ public class CStatements {
         panel.setBounds(100,150,175,80);
         panel.setLayout(new GridLayout(2,1,5,5));
 
-        btnCtm = new JButton("Statements");
-        btnCtm.setFocusable(false);
+        btnStatements = new JButton("Statements");
+        btnStatements.setFocusable(false);
 
         btnExit = new JButton("Exit");
         btnExit.setFocusable(false);
@@ -44,7 +44,7 @@ public class CStatements {
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-        panel.add(btnCtm);
+        panel.add(btnStatements);
         panel.add(btnExit);
         frame.add(panel);
         frame.add(table);

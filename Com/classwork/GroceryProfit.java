@@ -10,7 +10,7 @@ public class GroceryProfit {
 
     JFrame frame;
     JPanel panel;
-    JButton btnCtm,btnSpp,btnGoods,btnClear,btnProfit,btnExit;
+    JButton btnTotalSalary,btnTotalCost,btnRevenue,btnClear,btnProfit,btnExit;
     JTable table;
     JScrollPane scroll;
 
@@ -24,14 +24,14 @@ public class GroceryProfit {
         panel.setBounds(120,75,175,240);
         panel.setLayout(new GridLayout(6,1,5,5));
 
-        btnCtm = new JButton("Total Salary");
-        btnCtm.setFocusable(false);
+        btnTotalSalary = new JButton("Total Salary");
+        btnTotalSalary.setFocusable(false);
 
-        btnSpp = new JButton("Total Cost");
-        btnSpp.setFocusable(false);
+        btnTotalCost = new JButton("Total Cost");
+        btnTotalCost.setFocusable(false);
 
-        btnGoods = new JButton("Total Revenue");
-        btnGoods.setFocusable(false);
+        btnRevenue = new JButton("Total Revenue");
+        btnRevenue.setFocusable(false);
 
         btnProfit = new JButton("Total Profit");
         btnProfit.setFocusable(false);
@@ -58,9 +58,9 @@ public class GroceryProfit {
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-        panel.add(btnCtm);
-        panel.add(btnSpp);
-        panel.add(btnGoods);
+        panel.add(btnTotalCost);
+        panel.add(btnTotalSalary);
+        panel.add(btnRevenue);
         panel.add(btnClear);
         panel.add(btnExit);
         frame.add(panel);

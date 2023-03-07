@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class CPendingPayments {
     JFrame frame;
     JPanel panel;
-    JButton btnCtm,btnExit;
+    JButton btnPending,btnExit;
     JTable table;
     JScrollPane scroll;
 
@@ -22,8 +22,8 @@ public class CPendingPayments {
         panel.setBounds(100,150,175,80);
         panel.setLayout(new GridLayout(2,1,5,5));
 
-        btnCtm = new JButton("Pending payments");
-        btnCtm.setFocusable(false);
+        btnPending = new JButton("Pending payments");
+        btnPending.setFocusable(false);
 
         btnExit = new JButton("Exit");
         btnExit.setFocusable(false);
@@ -44,7 +44,7 @@ public class CPendingPayments {
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-        panel.add(btnCtm);
+        panel.add(btnPending);
         panel.add(btnExit);
         frame.add(panel);
         frame.add(table);
