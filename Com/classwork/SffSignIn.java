@@ -66,7 +66,7 @@ public class SffSignIn {
 
                 if (staff !=null){
                     frame.dispose();
-                    WelcomePage welcomePage = new WelcomePage();
+                    StaffWelcomePage swp = new StaffWelcomePage();
                 }else{
                     JOptionPane.showMessageDialog(null,
                             "Email Or Password Invalid",

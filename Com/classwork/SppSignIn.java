@@ -66,7 +66,6 @@ public class SppSignIn {
 
                 if (supplier !=null){
                     frame.dispose();
-                    WelcomePage welcomePage = new WelcomePage();
                 }else{
                     JOptionPane.showMessageDialog(null,
                             "Email Or Password Invalid",

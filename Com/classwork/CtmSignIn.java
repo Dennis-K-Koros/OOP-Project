@@ -66,7 +66,6 @@ public class CtmSignIn {
 
             if (customer != null) {
                 frame.dispose();
-                WelcomePage welcomePage = new WelcomePage();
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Email Or Password Invalid",
