@@ -110,15 +110,12 @@ public class Admin {
             }
             model.setColumnIdentifiers(colName);
 
-            String GoodId,GoodName,buyingPrice,sellingPrice,AmountSupplied,AmountSold;
+            String GoodId,GoodName,buyingPrice;
             while (resultSet.next()){
                 GoodId = resultSet.getString(1);
                 GoodName = resultSet.getString(2);
                 buyingPrice = resultSet.getString(3);
-                sellingPrice = resultSet.getString(4);
-                AmountSupplied = resultSet.getString(5);
-                AmountSold = resultSet.getString(6);
-                String[]row = {GoodId,GoodName,buyingPrice,sellingPrice,AmountSupplied,AmountSold};
+                String[]row = {GoodId,GoodName,buyingPrice};
                 model.addRow(row);
             }
             stmt.close();

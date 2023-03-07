@@ -101,6 +101,34 @@ public class Statistics {
     }
 
     private void getNumberOfOrders() {
+        try {
+
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT COUNT(*)AS numberOfOrders FROM orders ";
+            ResultSet resultSet = stmt.executeQuery(sql);
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+            for (int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i + 1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            String numberOfOrders;
+            while (resultSet.next()){
+                numberOfOrders = resultSet.getString(1);
+                String[]row = {numberOfOrders};
+                model.addRow(row);
+            }
+            stmt.close();
+            conn.close();
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     private void getNumberOfGoods() {
@@ -129,14 +157,40 @@ public class Statistics {
             stmt.close();
             conn.close();
 
-
-
         }catch (Exception ex){
             ex.printStackTrace();
         }
     }
 
     private void getNumberOfSuppliers() {
+        try {
+
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT COUNT(*)AS numberOfSuppliers FROM Supplier ";
+            ResultSet resultSet = stmt.executeQuery(sql);
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+            for (int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i + 1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            String numberOfSuppliers;
+            while (resultSet.next()){
+                numberOfSuppliers = resultSet.getString(1);
+                String[]row = {numberOfSuppliers};
+                model.addRow(row);
+            }
+            stmt.close();
+            conn.close();
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     private void getNumberOfCustomers() {
