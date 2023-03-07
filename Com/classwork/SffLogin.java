@@ -147,7 +147,10 @@ public class SffLogin extends JFrame  {
                 staff.emailAddress=email;
                 staff.password = password;
             }
-
+            JOptionPane.showMessageDialog(null,
+                    "Successful SignUp Please SignIn",
+                    "Welcome",
+                    JOptionPane.PLAIN_MESSAGE);
             stmt.close();
             conn.close();
 

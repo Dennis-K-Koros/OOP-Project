@@ -154,7 +154,10 @@ public class SppLogin extends JFrame  {
                 suppliers.password = password;
                 suppliers.goodsSupplied = goodsSupplied;
             }
-
+            JOptionPane.showMessageDialog(null,
+                    "Successful SignUp Please SignIn",
+                    "Welcome",
+                    JOptionPane.PLAIN_MESSAGE);
             stmt.close();
             conn.close();
 

@@ -65,6 +65,10 @@ public class SppSignIn {
                 supplier=getAuthenticatedSupplier(name,password);
 
                 if (supplier !=null){
+                    JOptionPane.showMessageDialog(null,
+                            "Successful Login",
+                            "Welcome",
+                            JOptionPane.PLAIN_MESSAGE);
                     frame.dispose();
                     SppWelcomePage swp = new SppWelcomePage();
                 }else{

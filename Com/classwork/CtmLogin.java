@@ -150,7 +150,10 @@ CtmLogin extends JFrame  {
                 customer.emailAddress=email;
                 customer.password = password;
             }
-
+            JOptionPane.showMessageDialog(null,
+                    "Successful SignUp Please SignIn",
+                    "Welcome",
+                    JOptionPane.PLAIN_MESSAGE);
             stmt.close();
             conn.close();
 

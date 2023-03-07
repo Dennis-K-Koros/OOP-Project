@@ -65,6 +65,10 @@ public class SffSignIn {
                 staff=getAuthenticatedStaff(name,password);
 
                 if (staff !=null){
+                    JOptionPane.showMessageDialog(null,
+                            "Successful Login",
+                            "Welcome",
+                            JOptionPane.PLAIN_MESSAGE);
                     frame.dispose();
                     StaffWelcomePage swp = new StaffWelcomePage();
                 }else{

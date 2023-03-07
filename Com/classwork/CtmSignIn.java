@@ -65,6 +65,10 @@ public class CtmSignIn {
             customer = customerAuthentication(name, password);
 
             if (customer != null) {
+                JOptionPane.showMessageDialog(null,
+                        "Successful Login",
+                        "Welcome",
+                        JOptionPane.PLAIN_MESSAGE);
                 frame.dispose();
                 CtmWelcomePage cwp = new CtmWelcomePage();
             } else {
