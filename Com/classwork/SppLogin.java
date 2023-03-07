@@ -108,7 +108,7 @@ public class SppLogin extends JFrame  {
     }
 
     private void registerSupplier() {
-        String staffId = jtSpp.getText();
+        String supplierId = jtSpp.getText();
         String natId = txtId.getText();
         String name = txtName.getText();
         String phone = txtPhoneNumber.getText();
@@ -116,26 +116,26 @@ public class SppLogin extends JFrame  {
         String goodsSupplied = tfGoods.getText();
         String password = String.valueOf(pfPassword.getPassword());
 
-        if (name.isEmpty() || email.isEmpty() || natId.isEmpty() || phone.isEmpty() || password.isEmpty() || staffId.isEmpty() ||goodsSupplied.isEmpty() ){
+        if (name.isEmpty() || email.isEmpty() || natId.isEmpty() || phone.isEmpty() || password.isEmpty() || supplierId.isEmpty() ||goodsSupplied.isEmpty() ){
             JOptionPane.showMessageDialog(this,
                     "Please Enter All Fields",
                     "Try Again",
                     JOptionPane.ERROR_MESSAGE);
         }
 
-        suppliers=addSuppliersToDatabase(staffId,natId,name,phone,email,password,goodsSupplied);
+        suppliers=addSuppliersToDatabase(supplierId,natId,name,phone,email,password,goodsSupplied);
     }
     public Suppliers suppliers;
-    private Suppliers addSuppliersToDatabase(String staffId, String natId, String name, String phone, String email, String password,String goodsSupplied) {
+    private Suppliers addSuppliersToDatabase(String supplierId, String natId, String name, String phone, String email, String password,String goodsSupplied) {
 
         try{
 
             Connection conn = DBConnection.createDBConnection();
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO supplier(staffId,natId,staffName,PhoneNumber,emailAddress,goodsSupplied,Password)"+
-                    "VALUES(?,?,?,?,?,?)";
+            String sql = "INSERT INTO supplier(SupplierId,natId,SupplierName,PhoneNumber,emailAddress,goodsSupplied,Password)"+
+                    "VALUES(?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1,staffId);
+            preparedStatement.setString(1,supplierId);
             preparedStatement.setString(2,natId);
             preparedStatement.setString(3,name);
             preparedStatement.setString(4,phone);
@@ -146,7 +146,7 @@ public class SppLogin extends JFrame  {
 
             int addedRows = preparedStatement.executeUpdate();
             if (addedRows>0){
-                suppliers = new Suppliers( staffId, natId,name, phone, email,password,goodsSupplied);
+                suppliers = new Suppliers( supplierId, natId,name, phone, email,password,goodsSupplied);
                 suppliers.Id=natId;
                 suppliers.name=name;
                 suppliers.phoneNumber=phone;

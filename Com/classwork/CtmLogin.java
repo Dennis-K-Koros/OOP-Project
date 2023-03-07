@@ -77,6 +77,12 @@ CtmLogin extends JFrame  {
 
         btnSignUp=new JButton("SIGN UP");
         panel3.add(btnSignUp);
+        btnSignUp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                customerRegistration();
+            }
+        });
 
         btnSignIn=new JButton("SIGN IN");
         btnSignIn.addActionListener(new ActionListener() {

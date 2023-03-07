@@ -66,6 +66,7 @@ public class SppSignIn {
 
                 if (supplier !=null){
                     frame.dispose();
+                    SppWelcomePage swp = new SppWelcomePage();
                 }else{
                     JOptionPane.showMessageDialog(null,
                             "Email Or Password Invalid",
@@ -119,7 +120,7 @@ public class SppSignIn {
         try{
             Connection conn = DBConnection.createDBConnection();
             Statement stmt = conn.createStatement();
-            String sql = "SELECT * FROM staff WHERE staffName=? AND emailAddress=?";
+            String sql = "SELECT * FROM Supplier WHERE SupplierName=? AND password=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1,name);
             preparedStatement.setString(2,password);
@@ -127,8 +128,8 @@ public class SppSignIn {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 supplier = new Suppliers( name, password);
-                supplier.Id = resultSet.getString("StaffId");
-                supplier.name = resultSet.getString("StaffName");
+                supplier.Id = resultSet.getString("SupplierId");
+                supplier.name = resultSet.getString("SupplierName");
                 supplier.phoneNumber = resultSet.getString("PhoneNumber");
                 supplier.emailAddress = resultSet.getString("emailAddress");
             }

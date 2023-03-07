@@ -66,6 +66,7 @@ public class CtmSignIn {
 
             if (customer != null) {
                 frame.dispose();
+                CtmWelcomePage cwp = new CtmWelcomePage();
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Email Or Password Invalid",
@@ -119,7 +120,7 @@ public class CtmSignIn {
                 try{
                     Connection conn = DBConnection.createDBConnection();
                     Statement stmt = conn.createStatement();
-                    String sql = "SELECT * FROM staff WHERE customerName=? AND emailAddress=?";
+                    String sql = "SELECT * FROM customer WHERE customerName=? AND password=?";
                     PreparedStatement preparedStatement = conn.prepareStatement(sql);
                     preparedStatement.setString(1,name);
                     preparedStatement.setString(2,password);
@@ -127,8 +128,8 @@ public class CtmSignIn {
                     ResultSet resultSet = preparedStatement.executeQuery();
                     if (resultSet.next()){
                         customer = new Customer(name,password);
-                        customer.Id = resultSet.getString("StaffId");
-                        customer.name = resultSet.getString("StaffName");
+                        customer.Id = resultSet.getString("ctmId");
+                        customer.name = resultSet.getString("CustomerName");
                         customer.phoneNumber = resultSet.getString("PhoneNumber");
                         customer.emailAddress = resultSet.getString("emailAddress");
                     }

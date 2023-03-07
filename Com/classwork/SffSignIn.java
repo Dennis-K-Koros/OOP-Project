@@ -120,7 +120,7 @@ public class SffSignIn {
         try{
             Connection conn = DBConnection.createDBConnection();
             Statement stmt = conn.createStatement();
-            String sql = "SELECT * FROM staff WHERE staffName=? AND emailAddress=?";
+            String sql = "SELECT * FROM staff WHERE staffName=? AND password=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1,name);
             preparedStatement.setString(2,password);

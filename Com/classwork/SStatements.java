@@ -2,6 +2,8 @@ package Com.classwork;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SStatements {
     JFrame frame;
@@ -25,6 +27,13 @@ public class SStatements {
 
         btnExit = new JButton("Exit");
         btnExit.setFocusable(false);
+        btnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                CtmWelcomePage cwp = new CtmWelcomePage();
+            }
+        });
 
         table = new JTable();
         table.setBounds(420,25,370,350);
