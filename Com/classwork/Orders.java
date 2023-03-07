@@ -4,8 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Orders {
+    public Orders order;
+    public String oId,cId,gId,amount;
     JFrame frame;
     JLabel orderId, ctmId,goodId,amountSupplied;
     JTextField jtCtm,txtId,txtName,txtPhoneNumber;
@@ -60,6 +66,19 @@ public class Orders {
 
         btnOk=new JButton("OK");
         panel3.add(btnOk);
+        btnOk.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String oId1 = jtCtm.getText();
+                String cId1 = txtId.getText();
+                String gId1 = txtName.getText();
+                String amount1=  txtPhoneNumber.getText();
+                order  = addOrderToDatabase(oId1,cId1,gId1,amount1);
+                good = priceCalculator(gId1,amount1);
+
+
+            }
+        });
 
         btnClear=new JButton("CLEAR");
         panel3.add(btnClear);
@@ -77,5 +96,71 @@ public class Orders {
         frame.add(panel3);
         frame.setVisible(true);
     }
+    public Good good;
+    private Good priceCalculator(String gId1,String amount1) {
+        try {
+
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM goods WHERE goodId=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,gId1);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                good = new Good(gId1);
+                good.id = resultSet.getString("GoodId");
+                good.name = resultSet.getString("GoodName");
+                good.buyingPrice = resultSet.getInt("buyingPrice");
+            }
+            int amount = Integer.parseInt(amount1);
+            int totalCost = good.buyingPrice*amount;
+            JOptionPane.showMessageDialog(null,
+                    "The Total cost is "+ totalCost,
+                    "Delivery",
+                    JOptionPane.PLAIN_MESSAGE);
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  good;
+    }
+
+    private Orders addOrderToDatabase(String oId1,String cId1,String gId1,String amount1) {
+        try {
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO orders(orderId,customerId,goodId,quantity)" +
+                    "VALUES(?,?,?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, oId1);
+            preparedStatement.setString(2,cId1);
+            preparedStatement.setString(3,gId1);
+            preparedStatement.setString(4,amount1);
+
+
+            int addedRows = preparedStatement.executeUpdate();
+            if (addedRows>0){
+                order = new Orders();
+                order.oId=oId;
+                order.cId=cId;
+                order.gId=gId;
+                order.amount=amount;
+
+            }
+            JOptionPane.showMessageDialog(null,
+                    "Order Successful",
+                    "Order",
+                    JOptionPane.PLAIN_MESSAGE);
+            stmt.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
+
+
 
 }

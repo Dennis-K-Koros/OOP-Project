@@ -37,9 +37,10 @@ public class Staff  extends Person{
         this.salary = salary;
     }
 
+
     @Override
     public float getCashFlow() {
-        return salary;
+        return 0;
     }
 
     @Override
