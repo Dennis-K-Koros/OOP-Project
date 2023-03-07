@@ -60,6 +60,14 @@ public class Orders {
 
         btnOk=new JButton("OK");
         panel3.add(btnOk);
+        btnOk.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+
+
+            }
+        });
 
         btnClear=new JButton("CLEAR");
         panel3.add(btnClear);
@@ -77,5 +85,11 @@ public class Orders {
         frame.add(panel3);
         frame.setVisible(true);
     }
+    private void orderPayment(){
+        try
+
+    }
+
+
 
 }
