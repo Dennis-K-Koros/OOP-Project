@@ -29,7 +29,7 @@ public class SffSignIn {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
-        title = BorderFactory.createTitledBorder("Customer SignIn");
+        title = BorderFactory.createTitledBorder("Staff SignIn");
         title.setTitleFont(myFont1);
 
         panel = new JPanel();

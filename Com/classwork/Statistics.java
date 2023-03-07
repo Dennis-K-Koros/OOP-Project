@@ -104,6 +104,36 @@ public class Statistics {
     }
 
     private void getNumberOfGoods() {
+        try {
+
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT COUNT(*)AS numberOfGoods FROM Goods ";
+            ResultSet resultSet = stmt.executeQuery(sql);
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+            for (int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i + 1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            String numberOfGoods;
+            while (resultSet.next()){
+                numberOfGoods = resultSet.getString(1);
+                String[]row = {numberOfGoods};
+                model.addRow(row);
+            }
+            stmt.close();
+            conn.close();
+
+
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     private void getNumberOfSuppliers() {
