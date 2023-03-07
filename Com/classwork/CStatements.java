@@ -1,40 +1,29 @@
 package Com.classwork;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Admin {
-
+public class CStatements {
     JFrame frame;
     JPanel panel;
-    JButton btnCtm,btnSpp,btnGoods,btnClear,btnExit;
+    JButton btnCtm,btnExit;
     JTable table;
     JScrollPane scroll;
 
-    Admin(){
-        frame = new JFrame("Administrator Privileges");
+    CStatements(){
+        frame = new JFrame("Statements");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(840,450);
         frame.setLayout(null);
 
         panel = new JPanel();
-        panel.setBounds(120,75,175,200);
-        panel.setLayout(new GridLayout(5,1,5,5));
+        panel.setBounds(100,150,175,80);
+        panel.setLayout(new GridLayout(2,1,5,5));
 
-        btnCtm = new JButton("Customers");
+        btnCtm = new JButton("Statements");
         btnCtm.setFocusable(false);
-
-        btnSpp = new JButton("Suppliers");
-        btnSpp.setFocusable(false);
-
-        btnGoods = new JButton("Goods");
-        btnGoods.setFocusable(false);
-
-        btnClear = new JButton("Clear");
-        btnClear.setFocusable(false);
 
         btnExit = new JButton("Exit");
         btnExit.setFocusable(false);
@@ -42,7 +31,7 @@ public class Admin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                StaffWelcomePage swp = new StaffWelcomePage();
+                CtmWelcomePage cwp = new CtmWelcomePage();
             }
         });
 
@@ -56,9 +45,6 @@ public class Admin {
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         panel.add(btnCtm);
-        panel.add(btnSpp);
-        panel.add(btnGoods);
-        panel.add(btnClear);
         panel.add(btnExit);
         frame.add(panel);
         frame.add(table);
@@ -66,4 +52,3 @@ public class Admin {
     }
 
 }
-

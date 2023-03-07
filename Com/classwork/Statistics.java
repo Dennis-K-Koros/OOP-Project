@@ -2,6 +2,8 @@ package Com.classwork;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Statistics {
 
@@ -38,6 +40,13 @@ public class Statistics {
 
         btnExit = new JButton("Exit");
         btnExit.setFocusable(false);
+        btnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                StaffWelcomePage swp = new StaffWelcomePage();
+            }
+        });
 
         table = new JTable();
         table.setBounds(420,25,370,350);
