@@ -1,12 +1,17 @@
 package Com.classwork;
 
-public  abstract class Good {
-    protected String id;
-    protected String name;
-    protected int buyingPrice;
-    protected int sellingPrice;
-    protected int amountSupplied;
-    protected int amountSold;
+public  class Good {
+    public String id;
+    public  String name;
+    public   int buyingPrice;
+    public   int sellingPrice;
+    public int  amountSupplied;
+    public  int amountSold;
+
+    public Good(String id) {
+        this.id = id;
+
+    }
 
     public Good(String id, String name, int buyingPrice, int sellingPrice, int amountSupplied, int amountSold) {
         this.id = id;
@@ -17,8 +22,5 @@ public  abstract class Good {
         this.amountSold = amountSold;
     }
 
-    public abstract int getAmountLeft();
-    public abstract double RevenueEarned();
-    public abstract double getTotalCost();
-    public abstract double getTotalProfit();
+
 }

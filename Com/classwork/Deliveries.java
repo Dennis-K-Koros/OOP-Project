@@ -4,13 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Deliveries {
+    public String id;
+    public String sppId;
+    public String gdId;
+    public String amSupplied;
     JFrame frame;
     JLabel deliveryId, supplierId,goodId,phoneNumber;
     JTextField jtCtm,txtId,txtName,txtPhoneNumber;
     JButton btnOk,btnClear,btnCancel;
     JPanel panel1,panel2,panel3;
+    public Deliveries delivery;
 
     Deliveries(){
         frame= new JFrame("Deliveries");
@@ -59,6 +68,17 @@ public class Deliveries {
         panel3.setBounds(50,300,300,40);
 
         btnOk=new JButton("OK");
+        btnOk.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String deliveryId = jtCtm.getText();
+                String supplierId = txtId.getText();
+                String goodId = txtName.getText();
+                String amountSupplied =  txtPhoneNumber.getText();
+                delivery = addDeliveryToDatabase(deliveryId,supplierId,goodId,amountSupplied);
+                good = priceCalculator(goodId,amountSupplied);
+            }
+        });
         panel3.add(btnOk);
 
         btnClear=new JButton("CLEAR");
@@ -77,5 +97,70 @@ public class Deliveries {
         frame.add(panel3);
         frame.setVisible(true);
     }
+public Good good;
+    private Good priceCalculator(String goodId,String amountSupplied) {
+        try {
 
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM goods WHERE goodId=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,goodId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                good = new Good(id);
+                good.id = resultSet.getString("GoodId");
+                good.name = resultSet.getString("GoodName");
+                good.buyingPrice = resultSet.getInt("buyingPrice");
+            }
+            int amount = Integer.parseInt(amountSupplied);
+            int totalCost = good.buyingPrice*amount;
+            JOptionPane.showMessageDialog(null,
+                    "The Total cost is "+ totalCost,
+                    "Delivery",
+                    JOptionPane.PLAIN_MESSAGE);
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  good;
+    }
+
+    private Deliveries addDeliveryToDatabase(String deliveryId,String supplierId,String goodId,String amountSupplied) {
+        try {
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO deliveries(deliveryId,supplierId,goodId,amountSupplied)" +
+                    "VALUES(?,?,?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, deliveryId);
+            preparedStatement.setString(2,supplierId);
+            preparedStatement.setString(3,goodId);
+            preparedStatement.setString(4,amountSupplied);
+
+
+            int addedRows = preparedStatement.executeUpdate();
+            if (addedRows>0){
+                delivery = new Deliveries();
+                delivery.id=deliveryId;
+                delivery.sppId=supplierId;
+                delivery.gdId=goodId;
+                delivery.amSupplied=amountSupplied;
+
+            }
+            JOptionPane.showMessageDialog(null,
+                    "Delivery Successful",
+                    "Delivery",
+                    JOptionPane.PLAIN_MESSAGE);
+            stmt.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return delivery;
+    }
 }
+
+
