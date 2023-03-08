@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class SppWelcomePage {
     JFrame frame;
     JPanel panel;
-    JButton btnDelivery,btnPending,btnStatements;
+    JButton btnDelivery,btnStatements,btnExit;
 
     SppWelcomePage(){
 
@@ -31,15 +31,6 @@ public class SppWelcomePage {
             }
         });
 
-        btnPending = new JButton("Pending Payments");
-        btnPending.setFocusable(false);
-        btnPending.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                SPendingPayments spp = new SPendingPayments();
-            }
-        });
 
         btnStatements = new JButton("Check Statements");
         btnStatements.setFocusable(false);
@@ -50,11 +41,20 @@ public class SppWelcomePage {
                 SStatements ss = new SStatements();
             }
         });
+        btnExit = new JButton("Exit");
+        btnExit.setFocusable(false);
+        btnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                StartUp startUp = new StartUp();
+            }
+        });
 
 
         panel.add(btnDelivery);
-        panel.add(btnPending);
         panel.add(btnStatements);
+        panel.add(btnExit);
         frame.add(panel);
         frame.setVisible(true);
     }

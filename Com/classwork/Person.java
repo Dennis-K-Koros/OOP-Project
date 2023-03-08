@@ -18,7 +18,7 @@ public abstract class Person {
         this.name = name;
     }
 
-    public abstract float getCashFlow();
-  public abstract void showDetails();
+    public static void showDetails() {
+    }
 
 }

@@ -1,9 +1,11 @@
 package Com.classwork;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class CStatements {
     JFrame frame;
@@ -24,6 +26,12 @@ public class CStatements {
 
         btnStatements = new JButton("Statements");
         btnStatements.setFocusable(false);
+        btnStatements.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showStatements();
+            }
+        });
 
         btnExit = new JButton("Exit");
         btnExit.setFocusable(false);
@@ -51,4 +59,41 @@ public class CStatements {
         frame.setVisible(true);
     }
 
+    private void showStatements() {
+        String id;
+        id = JOptionPane.showInputDialog("Please enter your Customer Id");
+        try {
+            Connection conn = DBConnection.createDBConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM orders WHERE customerId=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+            int cols = rsmd.getColumnCount();
+            String[] colName = new String[cols];
+            for (int i = 0; i < cols; i++){
+                colName[i] = rsmd.getColumnName(i + 1);
+            }
+            model.setColumnIdentifiers(colName);
+
+            String orderId,customerId,goodId,amountSupplied;
+            while (resultSet.next()){
+                orderId = resultSet.getString(1);
+                customerId = resultSet.getString(2);
+                goodId = resultSet.getString(3);
+                amountSupplied = resultSet.getString(4);
+                String[]row = {orderId,customerId,goodId,amountSupplied};
+                model.addRow(row);
+            }
+            stmt.close();
+            conn.close();
+
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }

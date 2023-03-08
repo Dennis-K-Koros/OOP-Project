@@ -19,7 +19,7 @@ public class Orders {
     JPanel panel1,panel2,panel3;
 
     Orders(){
-        frame= new JFrame("Deliveries");
+        frame= new JFrame("Orders");
         frame.setSize(420,420);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
@@ -37,7 +37,7 @@ public class Orders {
         goodId=new JLabel("GOOD ID");
         panel1.add(goodId);
 
-        amountSupplied=new JLabel("AMOUNT SUPPLIED");
+        amountSupplied=new JLabel("AMOUNT BOUGHT");
         panel1.add(amountSupplied);
 
         frame.add(panel1);

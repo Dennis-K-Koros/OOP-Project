@@ -1,10 +1,15 @@
 package Com.classwork;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+
 public class Suppliers extends Person {
     public String supplierID;
     public String password;
     public String goodsSupplied;
     public double salary;
+     static JTable table;
 
 
     public Suppliers(String supplierID,double salary,String Id,String name,String phoneNumber,String emailAddress){
@@ -24,17 +29,7 @@ public class Suppliers extends Person {
         this.password=password;
     }
 
-    public float getMoneyDueToPay(){
-        return 0;
-    }
 
-    @Override
-    public float getCashFlow() {
-        return 0;
-    }
-
-    @Override
-    public void showDetails() {
-
+    public static void showDetails() {
     }
 }

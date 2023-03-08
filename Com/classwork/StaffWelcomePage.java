@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class StaffWelcomePage {
     JFrame frame;
     JPanel panel;
-    JButton btnStatistics,btnAdmin,btnPending,btnProfit;
+    JButton btnStatistics,btnAdmin,btnExit;
 
     StaffWelcomePage(){
 
@@ -18,8 +18,8 @@ public class StaffWelcomePage {
         frame.setLayout(null);
 
         panel = new JPanel();
-        panel.setBounds(120,75,175,200);
-        panel.setLayout(new GridLayout(4,1,5,5));
+        panel.setBounds(120,75,175,150);
+        panel.setLayout(new GridLayout(3,1,5,5));
 
         btnStatistics = new JButton("Statistics");
         btnStatistics.setFocusable(false);
@@ -40,31 +40,20 @@ public class StaffWelcomePage {
                 Admin admin = new Admin();
             }
         });
-
-        btnPending = new JButton("Pending Payments");
-        btnPending.setFocusable(false);
-        btnPending.addActionListener(new ActionListener() {
+        btnExit = new JButton("Exit");
+        btnExit.setFocusable(false);
+        btnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                PendingPayments pp = new PendingPayments();
+                StartUp startUp = new StartUp();
             }
         });
 
-        btnProfit = new JButton("Grocery's Expenditures");
-        btnProfit.setFocusable(false);
-        btnProfit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                GroceryProfit gp = new GroceryProfit();
-            }
-        });
 
         panel.add(btnStatistics);
         panel.add(btnAdmin);
-        panel.add(btnPending);
-        panel.add(btnProfit);
+        panel.add(btnExit);
         frame.add(panel);
         frame.setVisible(true);
     }

@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class CtmWelcomePage {
     JFrame frame;
     JPanel panel;
-    JButton btnOrders,btnPending,btnStatements;
+    JButton btnOrders,btnStatements,btnExit;
 
     CtmWelcomePage(){
 
@@ -31,15 +31,6 @@ public class CtmWelcomePage {
             }
         });
 
-        btnPending = new JButton("Pending Payments");
-        btnPending.setFocusable(false);
-        btnPending.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                CPendingPayments cpp = new CPendingPayments();
-            }
-        });
 
         btnStatements = new JButton("Check Statements");
         btnStatements.setFocusable(false);
@@ -50,11 +41,20 @@ public class CtmWelcomePage {
                 CStatements cs = new CStatements();
             }
         });
+        btnExit = new JButton("Exit");
+        btnExit.setFocusable(false);
+        btnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                StartUp startUp = new StartUp();
+            }
+        });
 
 
         panel.add(btnOrders);
-        panel.add(btnPending);
         panel.add(btnStatements);
+        panel.add(btnExit);
         frame.add(panel);
         frame.setVisible(true);
     }
